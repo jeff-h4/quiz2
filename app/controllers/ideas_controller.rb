@@ -17,7 +17,7 @@ class IdeasController < ApplicationController
     end
   end
   def show 
-
+    @comment = Comment.new
   end
   def index 
     @ideas = Idea.all

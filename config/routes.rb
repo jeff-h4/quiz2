@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :ideas
   root 'ideas#index'
 
   resources :users, only: [:new, :create] do
@@ -8,6 +7,9 @@ Rails.application.routes.draw do
   end
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection
+  end
+  resources :ideas do
+    resources :comments, only: [:create,:destroy]
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
