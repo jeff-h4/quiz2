@@ -8,6 +8,11 @@ class Idea < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   has_many :liking_users, through: :likes, source: :user
 
+  has_attached_file :ideapic, styles: { medium: "300x300>", thumb: "100x100>" }, 
+      default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :ideapic, 
+    content_type: /\Aimage\/.*\Z/
+
   def user_name
     if user
       user.user_name
