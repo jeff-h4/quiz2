@@ -1,0 +1,9 @@
+<h1>Welcome to the Idea Factory</h1>
+
+<h2>Idea Listings:</h2>
+
+<% @ideas.each do |i|  %>
+  <hr>
+  <strong><%= i.title  %></strong>
+  <p><%= i.body  %></p>
+<% end  %>
