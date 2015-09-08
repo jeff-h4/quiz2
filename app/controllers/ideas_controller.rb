@@ -2,6 +2,7 @@ class IdeasController < ApplicationController
 
   before_action :idea_params, only: [:create,:update]
   before_action :find_idea, only: [:show,:edit,:update,:destroy]
+  before_action :authenticate_user!, only: [:new,:create,:edit,:update,:destroy]
   def new 
     @idea = Idea.new
   end
@@ -24,7 +25,7 @@ class IdeasController < ApplicationController
   end
   def update 
   end
-  def delete
+  def destroy
   end
 
   private

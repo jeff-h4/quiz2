@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   resources :ideas
   root 'ideas#index'
+
+  resources :users, only: [:new, :create] do
+    get   :edit,   on: :collection 
+    patch :update, on: :collection
+  end
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
