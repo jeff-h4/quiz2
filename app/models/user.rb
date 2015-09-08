@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 	validates :email, presence: {message: "must be present"},
 	                  uniqueness: true,
 									  format: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  has_many :ideas, dependent: :nullify
 	def user_name
 		"#{first_name} #{last_name}"
 	end

@@ -8,6 +8,7 @@ class IdeasController < ApplicationController
   end
   def create
     @idea = Idea.new idea_params
+    @idea.user = current_user
     if @idea.save
       redirect_to :root, notice: "Idea created!"
     else
