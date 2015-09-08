@@ -5,6 +5,13 @@ class User < ActiveRecord::Base
 									  format: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   has_many :ideas, dependent: :nullify
   has_many :comments, dependent: :nullify
+
+  has_many :members, dependent: :destroy
+  has_many :joined_ideas, through: :members, source: :idea
+
+  def joined_ideas?(idea)
+    joined_ideas.include?(idea)
+  end
 	def user_name
 		"#{first_name} #{last_name}"
 	end

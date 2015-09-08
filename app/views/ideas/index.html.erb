@@ -4,11 +4,24 @@
 
 <% @ideas.each do |i|  %>
   <hr>
-  <strong><%= i.title  %></strong>
+  <strong><%= link_to i.title, idea_path(i)  %></strong>
   <p><%= i.body  %></p>
   <table>
     <tr>
       <td>By <%= i.user.user_name  %></td>
+      <td>
+        <% if user_signed_in?  %>
+          <% if i.user != current_user  %>
+            <% if current_user.joined_ideas?(i)  %>
+              <%= link_to "Joined", idea_member_path(i,i.joined_for(current_user)), 
+                      method: :delete, class: "btn btn-primary"  %>
+            <% else %>
+              <%= link_to "Join", idea_members_path(i,@member), 
+                      method: :post, class: "btn btn-primary"  %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </td>
     </tr>
   </table>
 <% end  %>

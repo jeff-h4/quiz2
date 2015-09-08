@@ -3,6 +3,13 @@
 <h2><%= @idea.title  %></h2>
 <p><%= @idea.body  %></p>
 
+<p>Members:</p>
+<ol>
+  <% @idea.users.each do |m|  %>  
+    <li><%= m.user_name %></li>
+  <% end  %>
+</ol>
+
 <hr>
 <h2> Add a Comment</h2>
 <%= form_for [@idea,@comment] do |f|  %>

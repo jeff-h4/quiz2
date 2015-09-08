@@ -21,6 +21,7 @@ class IdeasController < ApplicationController
   end
   def index 
     @ideas = Idea.all
+    @member = Member.new
   end
   def edit 
   end
