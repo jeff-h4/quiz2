@@ -9,8 +9,14 @@ class User < ActiveRecord::Base
   has_many :members, dependent: :destroy
   has_many :joined_ideas, through: :members, source: :idea
 
+  has_many :likes, dependent: :destroy
+  has_many :liked_ideas, through: :likes, source: :idea
+
   def joined_ideas?(idea)
     joined_ideas.include?(idea)
+  end
+  def liked_ideas?(idea)
+    liked_ideas.include?(idea)
   end
 	def user_name
 		"#{first_name} #{last_name}"

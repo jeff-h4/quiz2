@@ -19,6 +19,14 @@
               <%= link_to "Join", idea_members_path(i,@member), 
                       method: :post, class: "btn btn-primary"  %>
             <% end %>
+
+            <% if current_user.liked_ideas?(i)  %>
+              <%= link_to "Liked", idea_like_path(i,i.liked_for(current_user)), 
+                      method: :delete, class: "btn btn-primary"  %>
+            <% else %>
+              <%= link_to "Like", idea_likes_path(i,@likes), 
+                      method: :post, class: "btn btn-primary"  %>
+            <% end %>
           <% end %>
         <% end %>
       </td>

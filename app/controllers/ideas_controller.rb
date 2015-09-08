@@ -20,8 +20,9 @@ class IdeasController < ApplicationController
     @comment = Comment.new
   end
   def index 
-    @ideas = Idea.all
+    @ideas  = Idea.all
     @member = Member.new
+    @like   = Like.new
   end
   def edit 
   end

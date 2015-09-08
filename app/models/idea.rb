@@ -5,6 +5,9 @@ class Idea < ActiveRecord::Base
   has_many :members, dependent: :destroy
   has_many :users, through: :members
 
+  has_many :likes, dependent: :destroy
+  has_many :liking_users, through: :likes, source: :user
+
   def user_name
     if user
       user.user_name
@@ -14,5 +17,8 @@ class Idea < ActiveRecord::Base
   end
   def joined_for(user)
     members.find_by_user_id(user.id)
+  end
+  def liked_for(user)
+    likes.find_by_user_id(user.id)
   end
 end
